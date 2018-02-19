@@ -34,6 +34,7 @@ const commentPost = (req,res)=>{
           })
 
      })
+     .catch(err=>{res.send(err)})
      
 }
 
@@ -54,7 +55,7 @@ const likePost = (req,res)=>{
          let likers  = {
              author: req.headers.authorid,
          }
-
+         console.log(doc.likes)
          doc.likes.push(likers)
          doc.save()
           .then(doc=>{
@@ -62,6 +63,7 @@ const likePost = (req,res)=>{
           })
           .catch(err=>{res.send(err)})
      })
+     .catch(err=>{res.send(err)})
 }
 
 module.exports = {

@@ -21,15 +21,30 @@ chai.use(chaiHTTP)
 //     })
 // })
 
-describe('comment check',function(){
-    describe('PUT /blogs/:id/comment',function(){
-        it('show me green if it commented',function done(){
+// describe('comment check',function(){
+//     describe('PUT /blogs/:id/comment',function(){
+//         it('show me green if it commented',function (done){
+//             chai.request(app)
+//              .put('/blogs/5a8accc7ee2fce3025a90188/comment')
+//              .set('authorid','5a8ab06ec2c37c2958874d96')
+//              .send({
+//                 comment:'idihhhh ahahhaha'
+//              })
+//              .end((err,res)=>{
+//                  expect(res).status(200)
+//                  done()
+//              })
+//         })
+//     })
+// })
+
+
+describe('likes check',function(){
+    describe('PUT /blogs/:id/likes',function(){
+        it('show me green if it liked',function (done){
             chai.request(app)
-             .put('/blogs/5a8ac69ca7377d2e5407f236/comment')
-             .set('authorid','5a8aaf22e6d83f28eed70dcc')
-             .send({
-                comment:'idihhhh uhuyyyyyeee'
-             })
+             .put('/blogs/5a8accc7ee2fce3025a90188/likes')
+             .set('authorid','5a8ab06ec2c37c2958874d96')
              .end((err,res)=>{
                  expect(res).status(200)
                  done()
@@ -71,7 +86,7 @@ describe('comment check',function(){
 
 
 // describe('show all authors and a green check pls',function(){
-//     it('show me all authors data',function done(){
+//     it('show me all authors data',function (done){
 //         chai.request(app)
 //          .get('/authors')
 //          .end((err,res)=>{
@@ -83,7 +98,7 @@ describe('comment check',function(){
 // }) 
 
 // describe('show me one author pls ',function(){
-//     it('will you show me 1 author pls ',function done(){
+//     it('will you show me 1 author pls ',function (done){
 //         chai.request(app)
 //          .get('/authors/5a8aaf22e6d83f28eed70dcc')
 //          .end((err,res)=>{
@@ -95,7 +110,7 @@ describe('comment check',function(){
 // })
 
 // describe('show me that author that has been updated',function() {
-//     it('can u show me updated one pls',function done(){
+//     it('can u show me updated one pls',function (done){
 //         chai.request(app)
 //         .put('/authors')
 //         .set('userId','5a8aaf22e6d83f28eed70dcc')
@@ -108,7 +123,7 @@ describe('comment check',function(){
 // })
 
 // describe('show me that u just delte someone here',function(){
-//     it('are u delete some author?',function done(){
+//     it('are u delete some author?',function (done){
 //         chai.request(app)
 //          .del('/authors/5a8ab06ec2c37c2958874d96')
 //          .end((err,res)=>{
