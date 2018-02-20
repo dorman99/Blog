@@ -1,3 +1,0 @@
-const signin = (req,res)=>{
-
-}

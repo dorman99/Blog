@@ -2,7 +2,9 @@ var express = require('express');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var signup = require('./routes/signup')
 var authors = require('./routes/authors');
+var login = require('./routes/login')
 var blogs = require('./routes/blogs');
 var app = express();
 var mongoose = require("mongoose");
@@ -16,6 +18,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use('/', index);
+app.use('/login',login)
+app.use('/signup',signup)
 app.use('/authors', authors);
 app.use('/blogs',blogs)
 

@@ -1,16 +1,25 @@
 const Author = require('../models/Author')
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 
 const createAuthor = (req,res)=>{
-    let author =  new Author({
-        username : req.body.username,
-        password : req.body.password
+    let auth = new Author({
+        name: req.body.name,
+        username: req.body.username,
+        password: req.body.password,
+        role: req.body.role
     })
+    bcrypt.hash(auth.password, saltRounds, function (err, hash) {
+        auth.password = hash
 
-    author.save()
-     .then(function(doc){
-         res.status(200).send({message:'author created ',data:doc})
-     })
-     .catch(err=>{res.send(err)})
+        if (!err) {
+            auth.save()
+                .then(doc => {
+                    res.status(200).send({ message: 'user created', data: doc })
+                })
+                .catch(err => { res.send(err) })
+        }
+    })
 }
 
 const findAll = (req,res)=>{
