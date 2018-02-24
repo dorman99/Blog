@@ -10,6 +10,7 @@ router.post('/', (req, res) => {
         name:req.body.name,
         username:req.body.username,
         password:req.body.password,
+        img:req.body.img
     })
      bcrypt.hash(auth.password, saltRounds, function (err, hash) {
          auth.password = hash

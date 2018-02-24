@@ -5,9 +5,9 @@ var authAdmin = require('../middlewares/authadmin')
 var auth = require('../middlewares/authadmin')
 
 router
-  .post('/', authAdmin.auth,authController.createAuthor)
+  .post('/', authController.createAuthor)
   .get('/',authController.findAll)
-  .put('/',authAdmin.auth,authController.editAuthor)
+  .put('/:id',authAdmin.auth,authController.editAuthor)
   .delete('/:id', authAdmin.auth,authController.deleteAuthor)
   .get('/:id', authAdmin.auth,authController.findOne)
 

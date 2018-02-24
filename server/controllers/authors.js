@@ -36,8 +36,8 @@ const editAuthor = (req,res)=>{
     let objUpdate = {
         ... req.body
     }
-
-    Author.update({"_id":req.headers.userid},{$set:objUpdate})
+    console.log('masuk')
+    Author.update({"_id":req.params.id},{$set:objUpdate})
      .then(doc=>{
          res.status(200).send({message:'user updated',data:doc})
      })
@@ -47,7 +47,7 @@ const editAuthor = (req,res)=>{
 }
 
 const deleteAuthor = (req,res)=>{
-    Author.remove({"_id":req.body.authorid})
+    Author.remove({"_id":req.params.id})
      .then(doc=>{
          res.status(200).send({message:'author deleted ',data:doc})
      })

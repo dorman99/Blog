@@ -1,6 +1,7 @@
 var jwt = require('jsonwebtoken');
 
 const auth = (req, res, next) => {
+    console.log(req.headers.token,'ini token dari server')
     jwt.verify(req.headers.token, 'haha', (err, decoded) => {
         if (decoded) {
             console.log(decoded)

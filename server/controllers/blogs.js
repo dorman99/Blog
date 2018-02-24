@@ -2,8 +2,11 @@ const Blog = require('../models/Blog')
 
 
 const createArticle = (req,res)=>{
+    console.log(req.body.img,'masuk sini')
     let blog =  new Blog({
         title: req.body.title,
+        content: req.body.content,
+        img: req.body.img,
         author: req.headers.authorid,
     })
 
@@ -20,7 +23,8 @@ const commentPost = (req,res)=>{
          console.log(req.headers.authorid,'ini author id')
         let comment = {
             author:req.headers.authorid,
-            body:req.body.comment
+            body:req.body.comment,
+           
         } 
         doc.comments.push(comment)
         console.log(doc.comments,'ini comment')
@@ -38,8 +42,16 @@ const commentPost = (req,res)=>{
      
 }
 
+const deleteblog = (req,res)=>{
+    Blog.remove({
+        "_id":req.params.id
+    }).then(result=>{
+        res.status(200).send({message:'deleted',data:result})
+    }).catch(err=>{res.send(err)})
+}
+
 const findAllBlogs = (req,res)=>{
-    Blog.find()
+    Blog.find().populate('author')
      .then(docs=>{
          console.log('ini docs',docs)
          res.status(200).send({message:'heres all blog data, ',data:docs})
@@ -70,5 +82,6 @@ module.exports = {
     createArticle,
     commentPost,
     findAllBlogs,
-    likePost
+    likePost,
+    deleteblog
 }
