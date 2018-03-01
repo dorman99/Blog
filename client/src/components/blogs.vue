@@ -5,9 +5,6 @@
       <h1 class="title">
         Wanna read something good ?
       </h1>
-      <h2 class="subtitle">
-        Primary subtitle
-      </h2>
     </div>
   </div>
   <div class="container">

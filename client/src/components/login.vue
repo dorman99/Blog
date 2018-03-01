@@ -70,6 +70,7 @@ export default {
               localStorage.setItem('pic',resp.data.profile)
             } else if (resp.data.role === 'admin') {
               console.log('ini dari server admin', resp.data)
+              localStorage.setItem('admin',resp.data.role)
               localStorage.setItem('token', resp.data.data)
                  console.log('login',resp)
                   self.$router.push('admin')

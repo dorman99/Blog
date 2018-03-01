@@ -26,7 +26,7 @@
 
               <div class="field">
                 <div class="control">
-                  <input v-model="username" class="input is-large" type="text" placeholder="Your Username" autofocus="">
+                  <input @input="usernameregex"  v-model="username" :class="usernameinput" type="text" placeholder="Your Username" autofocus="">
                 </div>
               </div>
 
@@ -57,7 +57,8 @@ export default {
       name: '',
       username: '',
       password: '',
-      img: ''
+      img: '',
+      usernameinput: 'input is-large'
     }
   },
   methods: {
@@ -77,28 +78,44 @@ export default {
     },
     signup () {
       let self = this
-      this.$http.post('/signup', {
-        username: self.username,
-        password: self.password,
-        name: self.name,
-        img: self.img
-      }).then(resp => {
-        console.log(resp)
-        let x = resp.data.message.search('username')
-        if (x !== -1) {
-          this.$swal('Sign Up Fail!', 'username sudah digunakan / tidak boleh kosong!', 'error')
-          self.username = ''
-          self.password = ''
-          self.name = ''
-          self.img = ''
-        } else {
-          this.$swal('Sign Up Complete!', 'Silakan Login!', 'success')
-          self.username = ''
-          self.password = ''
-          self.name = ''
-          self.img = ''
-        }
-      })
+      if(!this.usernamechecker(self.username)){
+        this.$swal('Username input error','tidak boleh mengandung spesial karakter dan spasi','error')
+      } else {
+        this.$http.post('/signup', {
+          username: self.username,
+          password: self.password,
+          name: self.name,
+          img: self.img
+        }).then(resp => {
+          console.log(resp)
+          let x = resp.data.message.search('username')
+          if (x !== -1) {
+            this.$swal('Sign Up Fail!', 'username sudah digunakan / tidak boleh kosong!', 'error')
+            self.username = ''
+            self.password = ''
+            self.name = ''
+            self.img = ''
+          } else {
+            this.$swal('Sign Up Complete!', 'Silakan Login!', 'success')
+            self.username = ''
+            self.password = ''
+            self.name = ''
+            self.img = ''
+          }
+        })
+      } 
+    },
+    usernameregex(e) {
+      var usernameRegex = /^[a-zA-Z0-9]+$/
+      if(!usernameRegex.test(e.target.value)) {
+        this.usernameinput = 'input is-large is-danger'
+      }else {
+        this.usernameinput = 'input is-large is-success'
+      }
+    },
+    usernamechecker(username){
+      var usernameRegex = /^[a-zA-Z0-9]+$/
+      return usernameRegex.test(username)
     }
   }
 }

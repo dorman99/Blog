@@ -53,6 +53,9 @@ export default {
     }
   },
   created() {
+      if (localStorage.getItem('admin')) {
+        this.admin = true
+      }
       let self = this
       this.$http.get('/blogs')
        .then(response => {

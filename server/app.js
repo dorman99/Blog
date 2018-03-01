@@ -11,8 +11,8 @@ var app = express();
 var mongoose = require("mongoose");
 var cors = require('cors')
 var morgan = require('morgan')
-mongoose.connect('mongodb://dorman99:tdd1@ds247698.mlab.com:47698/tdd')
-// mongoose.connect('mongodb://localhost/tdd')
+// mongoose.connect('mongodb://dorman99:tdd1@ds247698.mlab.com:47698/tdd')
+mongoose.connect('mongodb://localhost/tdd')
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
